@@ -13,8 +13,6 @@ static char font[]           = { "monospace:size=13" };
 static int vertpad            = 10;       /* vertical padding of bar */
 static int sidepad            = 10;       /* horizontal padding of bar */
 static char dmenufont[]       = "monospace:size=13";
-static unsigned int baralpha        = 0xd0;
-static unsigned int borderalpha     = OPAQUE;
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -103,7 +101,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_e,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_r,  	   togglefloating, {0} },
-	{ MODKEY,                       XK_t,  	   setlayout,      {0} },
+	{ MODKEY,           XK_t,       spawn,      SHCMD("pidof -s picom && killall -9 picom || picom") },
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,			XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
@@ -114,6 +112,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
+
 
 
 	TAGKEYS(                        XK_1,                      0)

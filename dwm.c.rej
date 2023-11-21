@@ -1,37 +1,64 @@
 --- dwm.c
 +++ dwm.c
-@@ -1712,34 +1740,6 @@ tagmon(const Arg *arg)
- 	sendmon(selmon->sel, dirtomon(arg->i));
+@@ -207,6 +208,7 @@ static void setup(void);
+ static void seturgent(Client *c, int urg);
+ static void showhide(Client *c);
+ static void sigchld(int unused);
++static void sigstatusbar(const Arg *arg);
+ static void spawn(const Arg *arg);
+ static void tag(const Arg *arg);
+ static void tagmon(const Arg *arg);
+@@ -723,9 +743,24 @@ drawbar(Monitor *m)
+ 
+ 	/* draw status first so it can be overdrawn by tags later */
+ 	if (m == selmon) { /* status is only drawn on selected monitor */
++		char *text, *s, ch;
+ 		drw_setscheme(drw, scheme[SchemeNorm]);
+-		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+-		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
++
++		x = 0;
++		for (text = s = stext; *s; s++) {
++			if ((unsigned char)(*s) < ' ') {
++				ch = *s;
++				*s = '\0';
++				tw = TEXTW(text) - lrpad;
++				drw_text(drw, m->ww - statusw + x, 0, tw, bh, 0, text, 0);
++				x += tw;
++				*s = ch;
++				text = s + 1;
++			}
++		}
++		tw = TEXTW(text) - lrpad + 2;
++		drw_text(drw, m->ww - statusw + x, 0, tw, bh, 0, text, 0);
++		tw = statusw;
+ 	}
+ 
+ 	for (c = m->clients; c; c = c->next) {
+@@ -2047,8 +2120,25 @@ updatesizehints(Client *c)
+ void
+ updatestatus(void)
+ {
+-	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
++	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext))) {
+ 		strcpy(stext, "dwm-"VERSION);
++		statusw = TEXTW(stext) - lrpad + 2;
++	} else {
++		char *text, *s, ch;
++
++		statusw  = 0;
++		for (text = s = stext; *s; s++) {
++			if ((unsigned char)(*s) < ' ') {
++				ch = *s;
++				*s = '\0';
++				statusw += TEXTW(text) - lrpad;
++				*s = ch;
++				text = s + 1;
++			}
++		}
++		statusw += TEXTW(text) - lrpad + 2;
++
++	}
+ 	drawbar(selmon);
  }
  
--void
--tile(Monitor *m)
--{
--	unsigned int i, n, h, mw, my, ty;
--	Client *c;
--
--	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
--	if (n == 0)
--		return;
--
--	if (n > m->nmaster)
--		mw = m->nmaster ? m->ww * m->mfact : 0;
--	else
--		mw = m->ww;
--	for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
--		if (i < m->nmaster) {
--			h = (m->wh - my) / (MIN(n, m->nmaster) - i);
--			resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), 0);
--			if (my + HEIGHT(c) < m->wh)
--				my += HEIGHT(c);
--		} else {
--			h = (m->wh - ty) / (n - i);
--			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
--			if (ty + HEIGHT(c) < m->wh)
--				ty += HEIGHT(c);
--		}
--}
--
- void
- togglebar(const Arg *arg)
- {

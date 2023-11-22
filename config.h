@@ -38,8 +38,12 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "nmtui",     NULL,       NULL,       0,            1,           -1 },
+	{ "pavucontrol",     NULL,       NULL,       0,            1,           -1 },
+	{ "dooit",     NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",  NULL,       NULL,       1,       0,           1 },
+	{ "code-oss",  NULL,       NULL,       2,       0,           1 },
+	{ "discord",  NULL,       NULL,       1,       0,           0 },
 };
 
 /* layout(s) */
@@ -162,6 +166,13 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
 	{ 0,			        XK_Print,  spawn,	   {.v = prtscrcmd } },
 
+    { 0,		XK_F1,		spawn,		{.v = (const char*[]){ "dmPower", NULL } } },
+    { 0,		XK_F2,		spawn,		{.v = (const char*[]){ "dmNewlook", NULL } } },
+    { 0,		XK_F3,		spawn,		{.v = (const char*[]){ "st", "-e", "dooit", NULL } } },
+	{ 0,		XK_F4,		spawn,		{.v = (const char*[]){ "dmPower", NULL } } },
+
+
+
 
     { MODKEY,		XK_F6,		spawn,		{.v = (const char*[]){ "st", "-e", "nmtui", NULL } } },
 	{ MODKEY,		XK_F7,		spawn,		{.v = (const char*[]){ "pavucontrol", NULL } } },
@@ -192,7 +203,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,		XK_q,      quit,           {0} },
+	
 };
 
 /* button definitions */

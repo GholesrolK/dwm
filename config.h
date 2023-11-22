@@ -41,9 +41,9 @@ static const Rule rules[] = {
 	{ "nmtui",     NULL,       NULL,       0,            1,           -1 },
 	{ "pavucontrol",     NULL,       NULL,       0,            1,           -1 },
 	{ "dooit",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1,       0,           1 },
+	{ "firefox",  NULL,       NULL,       1,       0,           1 },
 	{ "code-oss",  NULL,       NULL,       2,       0,           1 },
-	{ "discord",  NULL,       NULL,       1,       0,           0 },
+	{ "Discord",  NULL,       NULL,       1,       0,           0 },
 };
 
 /* layout(s) */
@@ -166,10 +166,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
 	{ 0,			        XK_Print,  spawn,	   {.v = prtscrcmd } },
 
-    { 0,		XK_F1,		spawn,		{.v = (const char*[]){ "dmPower", NULL } } },
-    { 0,		XK_F2,		spawn,		{.v = (const char*[]){ "dmNewlook", NULL } } },
+    { 0,		XK_F1,		spawn,		SHCMD("$HOME/.local/scripts/dmFolders") },
+    { 0,		XK_F2,		spawn,		SHCMD("$HOME/.local/scripts/dmNewlook") },
     { 0,		XK_F3,		spawn,		{.v = (const char*[]){ "st", "-e", "dooit", NULL } } },
-	{ 0,		XK_F4,		spawn,		{.v = (const char*[]){ "dmPower", NULL } } },
+	{ 0,		XK_F4,		spawn,		SHCMD("$HOME/.local/scripts/dmPower") },
 
 
 

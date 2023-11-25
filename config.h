@@ -38,12 +38,12 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "nmtui",     NULL,       NULL,       0,            1,           -1 },
-	{ "pavucontrol",     NULL,       NULL,       0,            1,           -1 },
-	{ "dooit",     NULL,       NULL,       0,            1,           -1 },
+	{ NULL,     "st",       "nmtui",       0,            1,           -1 },
+	{ "pavucontrol",     "pavucontrol",       "Volume Control",       0,            1,           -1 },
+	{ NULL,     "st",       "dooit",       0,            1,           -1 },
 	{ "firefox",  NULL,       NULL,       1,       0,           1 },
 	{ "code-oss",  NULL,       NULL,       2,       0,           1 },
-	{ "Discord",  NULL,       NULL,       1,       0,           0 },
+	{ "discord",  NULL,       NULL,       1,       0,           0 },
 };
 
 /* layout(s) */
@@ -174,9 +174,9 @@ static Key keys[] = {
 
 
 
-    { MODKEY,		XK_F6,		spawn,		{.v = (const char*[]){ "st", "-e", "nmtui", NULL } } },
-	{ MODKEY,		XK_F7,		spawn,		{.v = (const char*[]){ "pavucontrol", NULL } } },
-	{ MODKEY,		XK_F8,		spawn,		{.v = (const char*[]){ "wallpaper", NULL } } },
+    { 0,		XK_F6,		spawn,		{.v = (const char*[]){ "st", "-e", "nmtui", NULL } } },
+	{ 0,		XK_F7,		spawn,		{.v = (const char*[]){ "pavucontrol", NULL } } },
+	{ 0,		XK_F8,		spawn,		{.v = (const char*[]){ "wallpaper", NULL } } },
 
 
     { 0, XF86XK_AudioMute,		spawn,		SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },

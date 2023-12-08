@@ -173,10 +173,17 @@ static Key keys[] = {
 
 
 
-
+    { 0,		XK_F5,		spawn,		{.v = (const char*[]){ "gpu-screen-recorder-gtk", NULL } } },
     { 0,		XK_F6,		spawn,		{.v = (const char*[]){ "st", "-e", "nmtui", NULL } } },
 	{ 0,		XK_F7,		spawn,		{.v = (const char*[]){ "pavucontrol", NULL } } },
-	{ 0,		XK_F8,		spawn,		{.v = (const char*[]){ "wallpaper", NULL } } },
+	{ 0,		XK_F8,		spawn,		{.v = (const char*[]){ "stalonetray", NULL } } },
+
+
+    { 0,		XK_F9,		spawn,		{.v = (const char*[]){ "stalonetray", NULL } } },
+	{ 0,		XK_F10,		spawn,		{.v = (const char*[]){ "stalonetray", NULL } } },
+    { 0,		XK_F11,		spawn,		{.v = (const char*[]){ "stalonetray", NULL } } },
+	{ 0,		XK_F12,		spawn,		SHCMD("xrandr --output HDMI-1-0 --mode 1920x1080 --rate 120 --right-of eDP1 && xrandr --output HDMI-1-0 --mode 1920x1080 --rate 165 --right-of eDP1") },
+
 
 
     { 0, XF86XK_AudioMute,		spawn,		SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },

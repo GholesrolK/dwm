@@ -38,10 +38,10 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "nmtui",     NULL,       NULL,       0,            1,           -1 },
-	{ "pavucontrol",     NULL,       NULL,       0,            1,           -1 },
-	{ "dooit",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1,       0,           1 },
+	{ NULL,     "st",       "nmtui",       0,            1,           -1 },
+	{ "pavucontrol",     "pavucontrol",       "Volume Control",       0,            1,           -1 },
+	{ NULL,     "st",       "dooit",       0,            1,           -1 },
+	{ "firefox",  NULL,       NULL,       1,       0,           1 },
 	{ "code-oss",  NULL,       NULL,       2,       0,           1 },
 	{ "discord",  NULL,       NULL,       1,       0,           0 },
 };
@@ -166,17 +166,24 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
 	{ 0,			        XK_Print,  spawn,	   {.v = prtscrcmd } },
 
-    { 0,		XK_F1,		spawn,		{.v = (const char*[]){ "dmPower", NULL } } },
-    { 0,		XK_F2,		spawn,		{.v = (const char*[]){ "dmNewlook", NULL } } },
+    { 0,		XK_F1,		spawn,		SHCMD("$HOME/.local/scripts/dmFolders") },
+    { 0,		XK_F2,		spawn,		SHCMD("$HOME/.local/scripts/dmNewlook") },
     { 0,		XK_F3,		spawn,		{.v = (const char*[]){ "st", "-e", "dooit", NULL } } },
-	{ 0,		XK_F4,		spawn,		{.v = (const char*[]){ "dmPower", NULL } } },
+	{ 0,		XK_F4,		spawn,		SHCMD("$HOME/.local/scripts/dmPower") },
 
 
 
+    { 0,		XK_F5,		spawn,		{.v = (const char*[]){ "gpu-screen-recorder-gtk", NULL } } },
+    { 0,		XK_F6,		spawn,		{.v = (const char*[]){ "st", "-e", "nmtui", NULL } } },
+	{ 0,		XK_F7,		spawn,		{.v = (const char*[]){ "pavucontrol", NULL } } },
+	{ 0,		XK_F8,		spawn,		{.v = (const char*[]){ "stalonetray", NULL } } },
 
-    { MODKEY,		XK_F6,		spawn,		{.v = (const char*[]){ "st", "-e", "nmtui", NULL } } },
-	{ MODKEY,		XK_F7,		spawn,		{.v = (const char*[]){ "pavucontrol", NULL } } },
-	{ MODKEY,		XK_F8,		spawn,		{.v = (const char*[]){ "wallpaper", NULL } } },
+
+    { 0,		XK_F9,		spawn,		{.v = (const char*[]){ "stalonetray", NULL } } },
+	{ 0,		XK_F10,		spawn,		{.v = (const char*[]){ "stalonetray", NULL } } },
+    { 0,		XK_F11,		spawn,		{.v = (const char*[]){ "stalonetray", NULL } } },
+	{ 0,		XK_F12,		spawn,		SHCMD("xrandr --output HDMI-1-0 --mode 1920x1080 --rate 120 --right-of eDP1 && xrandr --output HDMI-1-0 --mode 1920x1080 --rate 165 --right-of eDP1") },
+
 
 
     { 0, XF86XK_AudioMute,		spawn,		SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },

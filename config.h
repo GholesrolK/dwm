@@ -14,8 +14,8 @@ static const char buttonbar[]       = "";
 static int topbar             = 1;        /* 0 means bottom bar */
 static int splitstatus        = 1;        /* 1 for split status items */
 static char *splitdelim        = ";";       /* Character used for separating status */
-static char *fonts[]          = { "monospace:size=15" };
-static char font[]           = { "monospace:size=15" };
+static char *fonts[]          = { "monospace:size=13" , "sheesh:20"};
+static char font[]           = { "monospace:size=13" };
 static int vertpad            = 10;       /* vertical padding of bar */
 static int sidepad            = 10;       /* horizontal padding of bar */
 static char dmenufont[]       = "monospace:size=13";
@@ -134,6 +134,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_e,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_a,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_s,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_d,      setlayout,      {.v = &layouts[5]} },
+	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[13]} },
 	{ MODKEY|ShiftMask,             XK_r,  	   togglefloating, {0} },
 	{ MODKEY,           XK_t,       spawn,      SHCMD("pidof -s picom && killall -9 picom || picom") },
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
@@ -144,10 +148,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_z,  focusmon,       {.i = -1 } },
+	{ MODKEY,                       XK_x, focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_z,  tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_x, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 	{ MODKEY|Mod4Mask,              XK_u,      incrgaps,       {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,      incrgaps,       {.i = -1 } },

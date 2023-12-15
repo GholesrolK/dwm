@@ -14,7 +14,7 @@ static const char buttonbar[]       = "";
 static int topbar             = 1;        /* 0 means bottom bar */
 static int splitstatus        = 1;        /* 1 for split status items */
 static char *splitdelim        = ";";       /* Character used for separating status */
-static char *fonts[]          = { "monospace:size=13" , "sheesh:20"};
+static char *fonts[]          = { "monospace:size=13" , "sheesh:25"};
 static char font[]           = { "monospace:size=13" };
 static int vertpad            = 10;       /* vertical padding of bar */
 static int sidepad            = 10;       /* horizontal padding of bar */
@@ -189,7 +189,7 @@ static Key keys[] = {
 
     { 0,		XK_F9,		spawn,		{.v = (const char*[]){ "stalonetray", NULL } } },
 	{ 0,		XK_F10,		spawn,		{.v = (const char*[]){ "stalonetray", NULL } } },
-    { 0,		XK_F11,		spawn,		{.v = (const char*[]){ "stalonetray", NULL } } },
+    { 0,		XK_F11,		spawn,		SHCMD("$HOME/.local/scripts/save-replay.sh") },
 	{ 0,		XK_F12,		spawn,		SHCMD("xrandr --output HDMI-1-0 --mode 1920x1080 --rate 120 --right-of eDP1 && xrandr --output HDMI-1-0 --mode 1920x1080 --rate 165 --right-of eDP1") },
 
 

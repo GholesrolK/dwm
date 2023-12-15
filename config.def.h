@@ -10,12 +10,12 @@ static const unsigned int gappoh    = 8;       /* horiz outer gap between window
 static const unsigned int gappov    = 8;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;   
 static int showbar            = 1;        /* 0 means no bar */
-static const char buttonbar[]       = "<O>";
+static const char buttonbar[]       = "";
 static int topbar             = 1;        /* 0 means bottom bar */
 static int splitstatus        = 1;        /* 1 for split status items */
 static char *splitdelim        = ";";       /* Character used for separating status */
-static char *fonts[]          = { "monospace:size=13" };
-static char font[]           = { "monospace:size=13" };
+static char *fonts[]          = { "monospace:size=15" };
+static char font[]           = { "monospace:size=15" };
 static int vertpad            = 10;       /* vertical padding of bar */
 static int sidepad            = 10;       /* horizontal padding of bar */
 static char dmenufont[]       = "monospace:size=13";
